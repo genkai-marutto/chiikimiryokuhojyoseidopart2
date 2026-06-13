@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>玄海町地域教育魅力化支援補助金ガイド</title>
+    <style>
+        :root {
+            --primary-color: #005596;
+            --secondary-color: #f8b62d;
+            --bg-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 95%;
+            max-width: 900px;
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            position: relative;
+            margin: 20px;
+        }
+
+        .page {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .main-title {
+            color: var(--primary-color);
+            font-size: 2.8rem;
+            font-weight: bold;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            border-left: 10px solid var(--secondary-color);
+            padding-left: 20px;
+        }
+
+        h2 { color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px; }
+
+        .source-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+        .toc-list li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .toc-list li:hover {
+            background: #eef6ff;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .btn-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .next-btn { background-color: var(--secondary-color); color: white; }
+        .prev-btn { background-color: #ccc; color: #555; }
+
+        .progress-bar {
+            height: 5px;
+            background: #eee;
+            width: 100%;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--secondary-color);
+            width: 12.5%;
+            transition: 0.3s;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+    <!-- Page 1: Title [資料1枚目] -->
+    <div class="page active" id="page1">
+        <h1 class="main-title">玄海町で学び、育つ。<br>げんかいみらい留学生への<br>フルサポート・パスポート</h1>
+        <img src="page1.PNG" alt="資料 1ページ目" class="source-img">
+        <p>佐賀県立唐津青翔高等学校へ進学するあなたへ。経済的負担を大幅に軽減し、充実した3年間にする制度をご紹介します 。</p>
+    </div>
+
+    <!-- Page 2: Table of Contents & Philosophy [資料2枚目] -->
+    <div class="page" id="page2">
+        <h2>目次と支援の理念</h2>
+        <img src="page2.PNG" alt="資料 2ページ目" class="source-img">
+        <p>なぜ玄海町は全国からの留学生を全力で支援するのか。その想いと、本ガイドの内容です。</p>
+        <ul class="toc-list">
+            <li onclick="goToPage(3)">1. Step 1: 体験入学のための交通費サポート</li>
+            <li onclick="goToPage(4)">2. Step 2: 毎月の家賃負担を軽減「生活支援」</li>
+            <li onclick="goToPage(5)">3. Step 3: 長期休暇の「帰省支援」</li>
+            <li onclick="goToPage(6)">4. Step 4: 「地域教育魅力化事業」</li>
+            <li onclick="goToPage(7)">5. 申請スケジュール＆アクションカレンダー</li>
+            <li onclick="goToPage(8)">6. 結論：あなたへの支援は未来への投資</li>
+        </ul>
+    </div>
+
+    <!-- Page 3: Step 1 [資料4枚目] -->
+    <div class="page" id="page3">
+        <h2>Step 1: まずは玄海町へ。体験入学の交通費支援</h2>
+        <img src="page3.PNG" alt="資料 4ページ目" class="source-img">
+        <p>県外の中学生と親権者を対象に、上限3万円（1年度1回）を補助します。</p>
+    </div>
+
+    <!-- Page 4: Step 2 [資料5枚目] -->
+    <div class="page" id="page4">
+        <h2>Step 2: 毎月の家賃を最大3万円軽減する「生活支援」</h2>
+        <img src="page4.PNG" alt="資料 5ページ目" class="source-img">
+        <p>町内の下宿等に居住する場合、最長36ヶ月間、月額上限3万円をサポートします。</p>
+    </div>
+
+    <!-- Page 5: Step 3 [資料6枚目] -->
+    <div class="page" id="page5">
+        <h2>Step 3: 家族との時間を大切に「帰省支援」</h2>
+        <img src="page5.PNG" alt="資料 6ページ目" class="source-img">
+        <p>長期休暇の帰省交通費を、1回上限5万円、年2回まで実費補助します。</p>
+    </div>
+
+    <!-- Page 6: Step 4 [資料7枚目] -->
+    <div class="page" id="page6">
+        <h2>Step 4: 自ら町の魅力をつくる「地域教育魅力化事業」</h2>
+        <img src="page6.PNG" alt="資料 7ページ目" class="source-img">
+        <p>町の人々と交流し、自発的に活動する際の予算（経費等）を支援します。</p>
+    </div>
+
+    <!-- Page 7: Schedule [資料8枚目] -->
+    <div class="page" id="page7">
+        <h2>申請スケジュール＆アクションカレンダー</h2>
+        <img src="page7.PNG" alt="資料 8ページ目" class="source-img">
+        <p>家賃補助は年2回（10月末・3月末）、見学や帰省は実施後30日以内の申請が必要です。</p>
+    </div>
+
+    <!-- Page 8: Conclusion [資料9枚目] -->
+    <div class="page" id="page8">
+        <h2>結論：あなたへの支援が、玄海町の未来への投資になる</h2>
+        <img src="page8.PNG" alt="資料 9ページ目" class="source-img">
+        <p>玄海町はあなたの3年間を全力で歓迎し、共に未来を照らす存在となることを期待しています。</p>
+    </div>
+
+    <!-- Navigation -->
+    <div class="btn-container">
+        <button class="prev-btn" id="prevBtn" onclick="changePage(-1)">前へ</button>
+        <span id="pageIndicator">1 / 8</span>
+        <button class="next-btn" id="nextBtn" onclick="changePage(1)">次へボタン</button>
+    </div>
+</div>
+
+<script>
+    let currentPage = 1;
+    const totalPages = 8; // 3ページ目を削除したため全8ページ
+
+    function updateDisplay() {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(`page${currentPage}`).classList.add('active');
+        
+        document.getElementById('pageIndicator').innerText = `${currentPage} / ${totalPages}`;
+        document.getElementById('progressFill').style.width = `${(currentPage / totalPages) * 100}%`;
+        
+        document.getElementById('prevBtn').style.visibility = (currentPage === 1) ? 'hidden' : 'visible';
+        document.getElementById('nextBtn').innerText = (currentPage === totalPages) ? '最初に戻る' : '次へボタン';
+    }
+
+    function changePage(step) {
+        currentPage += step;
+        if (currentPage > totalPages) currentPage = 1;
+        if (currentPage < 1) currentPage = 1;
+        updateDisplay();
+        window.scrollTo(0, 0);
+    }
+
+    function goToPage(pageNum) {
+        currentPage = pageNum;
+        updateDisplay();
+        window.scrollTo(0, 0);
+    }
+
+    updateDisplay();
+</script>
+
+</body>
+</html>
