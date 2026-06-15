@@ -1,236 +1,280 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>玄海町地域教育魅力化支援補助金ガイド</title>
-    <style>
-        :root {
-            --primary-color: #005596;
-            --secondary-color: #f8b62d;
-            --bg-color: #f0f4f8;
-            --card-bg: #ffffff;
-            --text-color: #333;
-        }
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>玄海町地域教育魅力化支援補助金</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --ink: #102033;
+      --text: #2f3f52;
+      --muted: #667085;
+      --line: #d8e1ec;
+      --blue: #005596;
+      --gold: #f8b62d;
+      --green: #047857;
+      --red: #b42318;
+      --shadow: 0 18px 38px rgba(15, 23, 42, .08);
+    }
 
-        body {
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+    * { box-sizing: border-box; }
 
-        .container {
-            width: 95%;
-            max-width: 900px;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            position: relative;
-            margin: 20px;
-        }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 48%);
+    }
 
-        .page {
-            display: none;
-            animation: fadeIn 0.4s ease-in-out;
-        }
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 56px;
+    }
 
-        .page.active {
-            display: block;
-        }
+    .topbar {
+      margin-bottom: 34px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
 
-        .main-title {
-            color: var(--primary-color);
-            font-size: 2.8rem;
-            font-weight: bold;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            border-left: 10px solid var(--secondary-color);
-            padding-left: 20px;
-        }
+    .mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--blue), #0f766e);
+      border-bottom: 5px solid var(--gold);
+      flex: 0 0 auto;
+    }
 
-        h2 { color: var(--primary-color); border-bottom: 2px solid var(--secondary-color); padding-bottom: 10px; }
+    .brand strong {
+      display: block;
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.35;
+    }
 
-        .source-img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-        }
+    .brand span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
 
-        .toc-list {
-            list-style: none;
-            padding: 0;
-        }
-        .toc-list li {
-            margin: 10px 0;
-            padding: 10px;
-            background: #f9f9f9;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .toc-list li:hover {
-            background: #eef6ff;
-            color: var(--primary-color);
-            font-weight: bold;
-        }
+    .hero {
+      margin-bottom: 26px;
+    }
 
-        .btn-container {
-            margin-top: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    h1 {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(30px, 5vw, 48px);
+      line-height: 1.14;
+      letter-spacing: 0;
+    }
 
-        button {
-            padding: 12px 30px;
-            font-size: 1rem;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-        }
+    .lead {
+      max-width: 760px;
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
 
-        .next-btn { background-color: var(--secondary-color); color: white; }
-        .prev-btn { background-color: #ccc; color: #555; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
 
-        .progress-bar {
-            height: 5px;
-            background: #eee;
-            width: 100%;
-            margin-bottom: 20px;
-            border-radius: 10px;
-        }
-        .progress-fill {
-            height: 100%;
-            background: var(--secondary-color);
-            width: 12.5%;
-            transition: 0.3s;
-            border-radius: 10px;
-        }
-    </style>
+    .card {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 280px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-top: 6px solid var(--blue);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      color: inherit;
+      text-decoration: none;
+      transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
+    }
+
+    .card:nth-child(2) { border-top-color: var(--green); }
+    .card:nth-child(3) { border-top-color: var(--gold); }
+
+    .card:hover,
+    .card:focus-visible {
+      outline: none;
+      transform: translateY(-3px);
+      border-color: #93c5fd;
+      box-shadow: 0 22px 46px rgba(15, 23, 42, .12);
+    }
+
+    .label {
+      width: max-content;
+      max-width: 100%;
+      margin-bottom: 16px;
+      padding: 5px 8px;
+      border-radius: 6px;
+      background: #edf4fb;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .card:nth-child(2) .label {
+      background: #e9f8f0;
+      color: var(--green);
+    }
+
+    .card:nth-child(3) .label {
+      background: #fff7e1;
+      color: #8a5a00;
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      color: var(--ink);
+      font-size: 22px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14px;
+    }
+
+    .open {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    .open span:last-child {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      flex: 0 0 auto;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        width: min(100% - 28px, 560px);
+        padding: 28px 0 42px;
+      }
+
+      .topbar {
+        margin-bottom: 28px;
+      }
+
+      .brand strong {
+        font-size: 17px;
+      }
+
+      .brand span {
+        font-size: 12px;
+      }
+
+      h1 {
+        font-size: 30px;
+        line-height: 1.22;
+      }
+
+      .lead {
+        font-size: 15px;
+        line-height: 1.75;
+      }
+
+      .cards { grid-template-columns: 1fr; }
+      .card {
+        min-height: 0;
+        padding: 18px;
+      }
+
+      .card h2 {
+        font-size: 21px;
+      }
+
+      .open {
+        margin-top: 18px;
+      }
+    }
+  </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-
-    <!-- Page 1: Title [資料1枚目] -->
-    <div class="page active" id="page1">
-        <h1 class="main-title">玄海町で学び、育つ。<br>げんかいみらい留学生へのサポート</h1>
-        <img src="page1.PNG" alt="資料 1ページ目" class="source-img">
-        <p>佐賀県立唐津青翔高等学校へ進学するあなたへ。経済的負担を大幅に軽減し、充実した3年間にする制度をご紹介します 。</p>
+  <main class="page">
+    <div class="topbar">
+      <div class="brand">
+        <span class="mark" aria-hidden="true"></span>
+        <div>
+          <strong>玄海町地域教育魅力化支援補助金</strong>
+          <span>制度の概要・対象確認・申請準備</span>
+        </div>
+      </div>
     </div>
 
-    <!-- Page 2: Table of Contents & Philosophy [資料2枚目] -->
-    <div class="page" id="page2">
-        <h2>目次と支援の理念</h2>
-        <img src="page2.PNG" alt="資料 2ページ目" class="source-img">
-        <p>なぜ玄海町は全国からの留学生を全力で支援するのか。その想いと、本ガイドの内容です。</p>
-        <ul class="toc-list">
-            <li onclick="goToPage(3)">1. Step 1: 体験入学のための交通費サポート</li>
-            <li onclick="goToPage(4)">2. Step 2: 毎月の家賃負担を軽減「生活支援」</li>
-            <li onclick="goToPage(5)">3. Step 3: 長期休暇の「帰省支援」</li>
-            <li onclick="goToPage(6)">4. Step 4: 「地域教育魅力化事業」</li>
-            <li onclick="goToPage(7)">5. 申請スケジュール＆アクションカレンダー</li>
-            <li onclick="goToPage(8)">6. 結論：あなたへの支援は未来への投資</li>
-        </ul>
-    </div>
+    <section class="hero" aria-labelledby="portal-title">
+      <div>
+        <h1 id="portal-title">知りたい内容を選んでください</h1>
+        <p class="lead">制度の概要、対象になるかの確認、申請前の準備を目的に合わせて確認できます。</p>
+      </div>
+    </section>
 
-    <!-- Page 3: Step 1 [資料4枚目] -->
-    <div class="page" id="page3">
-        <h2>Step 1: まずは玄海町へ。体験入学の交通費支援</h2>
-        <img src="page3.PNG" alt="資料 4ページ目" class="source-img">
-        <p>県外の中学生と親権者を対象に、上限3万円（1年度1回）を補助します。</p>
-    </div>
+    <section class="cards" aria-label="制度説明ページ一覧">
+      <a class="card" href="pages/guide/index.html">
+        <div>
+          <div class="label">制度全体</div>
+          <h2>補助金ガイド</h2>
+          <p>げんかいみらい留学生向けの支援内容、申請スケジュール、各制度の概要をスライド形式で確認できます。</p>
+        </div>
+        <div class="open"><span>概要を見る</span><span aria-hidden="true">→</span></div>
+      </a>
 
-    <!-- Page 4: Step 2 [資料5枚目] -->
-    <div class="page" id="page4">
-        <h2>Step 2: 毎月の家賃を最大3万円軽減する「生活支援」</h2>
-        <img src="page4.PNG" alt="資料 5ページ目" class="source-img">
-        <p>町内の下宿等に居住する場合、最長36ヶ月間、月額上限3万円をサポートします。</p>
-    </div>
+      <a class="card" href="pages/hantei/index.html">
+        <div>
+          <div class="label">対象確認</div>
+          <h2>対象確認ナビ</h2>
+          <p>質問に答えると、該当しそうな補助制度、概算の補助上限額、申請期限、確認ポイントを表示します。</p>
+        </div>
+        <div class="open"><span>対象を確認する</span><span aria-hidden="true">→</span></div>
+      </a>
 
-    <!-- Page 5: Step 3 [資料6枚目] -->
-    <div class="page" id="page5">
-        <h2>Step 3: 家族との時間を大切に「帰省支援」</h2>
-        <img src="page5.PNG" alt="資料 6ページ目" class="source-img">
-        <p>長期休暇の帰省交通費を、1回上限5万円、年2回まで実費補助します。</p>
-    </div>
-
-    <!-- Page 6: Step 4 [資料7枚目] -->
-    <div class="page" id="page6">
-        <h2>Step 4: 自ら町の魅力をつくる「地域教育魅力化事業」</h2>
-        <img src="page6.PNG" alt="資料 7ページ目" class="source-img">
-        <p>町の人々と交流し、自発的に活動する際の予算（経費等）を支援します。</p>
-    </div>
-
-    <!-- Page 7: Schedule [資料8枚目] -->
-    <div class="page" id="page7">
-        <h2>申請スケジュール＆アクションカレンダー</h2>
-        <img src="page7.PNG" alt="資料 8ページ目" class="source-img">
-        <p>家賃補助は年2回（10月末・3月末）、見学や帰省は実施後30日以内の申請が必要です。</p>
-    </div>
-
-    <!-- Page 8: Conclusion [資料9枚目] -->
-    <div class="page" id="page8">
-        <h2>結論：あなたへの支援が、玄海町の未来への投資になる</h2>
-        <img src="page8.PNG" alt="資料 9ページ目" class="source-img">
-        <p>玄海町はあなたの3年間を全力で歓迎し、共に未来を照らす存在となることを期待しています。</p>
-    </div>
-
-    <!-- Navigation -->
-    <div class="btn-container">
-        <button class="prev-btn" id="prevBtn" onclick="changePage(-1)">前へ</button>
-        <span id="pageIndicator">1 / 8</span>
-        <button class="next-btn" id="nextBtn" onclick="changePage(1)">次へボタン</button>
-    </div>
-</div>
-
-<script>
-    let currentPage = 1;
-    const totalPages = 8; // 3ページ目を削除したため全8ページ
-
-    function updateDisplay() {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.getElementById(`page${currentPage}`).classList.add('active');
-        
-        document.getElementById('pageIndicator').innerText = `${currentPage} / ${totalPages}`;
-        document.getElementById('progressFill').style.width = `${(currentPage / totalPages) * 100}%`;
-        
-        document.getElementById('prevBtn').style.visibility = (currentPage === 1) ? 'hidden' : 'visible';
-        document.getElementById('nextBtn').innerText = (currentPage === totalPages) ? '最初に戻る' : '次へボタン';
-    }
-
-    function changePage(step) {
-        currentPage += step;
-        if (currentPage > totalPages) currentPage = 1;
-        if (currentPage < 1) currentPage = 1;
-        updateDisplay();
-        window.scrollTo(0, 0);
-    }
-
-    function goToPage(pageNum) {
-        currentPage = pageNum;
-        updateDisplay();
-        window.scrollTo(0, 0);
-    }
-
-    updateDisplay();
-</script>
-
+      <a class="card" href="pages/checklist/index.html">
+        <div>
+          <div class="label">申請準備</div>
+          <h2>チェックシート</h2>
+          <p>申請タイミング、対象経費、証拠書類、提出前確認、請求までの確認事項を順番に整理できます。</p>
+        </div>
+        <div class="open"><span>申請準備を確認する</span><span aria-hidden="true">→</span></div>
+      </a>
+    </section>
+  </main>
 </body>
 </html>
