@@ -6,17 +6,24 @@
   <title>玄海町地域教育魅力化支援補助金</title>
   <style>
     :root {
-      --bg: #f5f7fb;
+      --bg: #fff9f3;
+      --surface: #fffaf5;
       --panel: #ffffff;
       --ink: #102033;
       --text: #2f3f52;
       --muted: #667085;
-      --line: #d8e1ec;
+      --line: #ecd9ca;
       --blue: #005596;
       --gold: #f8b62d;
       --green: #047857;
+      --green-soft: #e9f8f0;
+      --blue-soft: #edf4fb;
+      --gold-soft: #fff7e1;
+      --peach: #ffe3cc;
+      --peach-soft: #fff8f1;
       --red: #b42318;
-      --shadow: 0 18px 38px rgba(15, 23, 42, .08);
+      --shadow: 0 18px 38px rgba(83, 52, 28, .08);
+      --shadow-strong: 0 24px 58px rgba(83, 52, 28, .13);
     }
 
     * { box-sizing: border-box; }
@@ -26,18 +33,32 @@
       min-height: 100vh;
       color: var(--text);
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 48%);
+      background: var(--bg);
     }
 
     .page {
       width: min(1120px, calc(100% - 32px));
       margin: 0 auto;
-      padding: 34px 0 56px;
+      padding: 28px 0 56px;
+    }
+
+    .page::before {
+      content: "";
+      display: block;
+      height: 6px;
+      margin: 0 0 22px;
+      border-radius: 999px;
+      background: var(--blue);
+      box-shadow: inset 78px 0 0 var(--gold), inset 156px 0 0 #0f766e;
     }
 
     .topbar {
-      margin-bottom: 34px;
-      padding-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 30px;
+      padding-bottom: 18px;
       border-bottom: 1px solid var(--line);
     }
 
@@ -52,9 +73,36 @@
       width: 42px;
       height: 42px;
       border-radius: 8px;
-      background: linear-gradient(135deg, var(--blue), #0f766e);
+      background: var(--blue);
       border-bottom: 5px solid var(--gold);
       flex: 0 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mark::before,
+    .mark::after {
+      content: "";
+      position: absolute;
+      background: #fff;
+      opacity: .92;
+    }
+
+    .mark::before {
+      width: 19px;
+      height: 6px;
+      left: 7px;
+      top: 13px;
+      border-radius: 999px;
+      transform: rotate(-25deg);
+    }
+
+    .mark::after {
+      width: 13px;
+      height: 13px;
+      right: 8px;
+      top: 9px;
+      border-radius: 50%;
     }
 
     .brand strong {
@@ -71,16 +119,39 @@
       line-height: 1.45;
     }
 
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 36px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      border: 1px solid #f4c99d;
+      background: var(--peach-soft);
+      color: #8a4b14;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
     .hero {
-      margin-bottom: 26px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 26px;
+      align-items: end;
+      margin-bottom: 24px;
     }
 
     h1 {
       margin: 0;
       color: var(--ink);
-      font-size: clamp(30px, 5vw, 48px);
+      font-size: clamp(31px, 5vw, 50px);
       line-height: 1.14;
       letter-spacing: 0;
+    }
+
+    .title-line {
+      display: block;
     }
 
     .lead {
@@ -89,6 +160,30 @@
       color: var(--muted);
       font-size: 16px;
       line-height: 1.8;
+    }
+
+    .quick-start {
+      border: 1px solid #f2c4a3;
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 16px;
+      box-shadow: 0 14px 30px rgba(179, 91, 36, .09);
+      border-left: 5px solid #f59e63;
+    }
+
+    .quick-start b {
+      display: block;
+      color: #7c3f13;
+      font-size: 15px;
+      line-height: 1.45;
+      margin-bottom: 6px;
+    }
+
+    .quick-start p {
+      margin: 0;
+      color: #72503a;
+      font-size: 13px;
+      line-height: 1.7;
     }
 
     .cards {
@@ -100,10 +195,10 @@
     .card {
       display: grid;
       grid-template-rows: auto 1fr auto;
-      min-height: 280px;
+      min-height: 318px;
       padding: 20px;
       border: 1px solid var(--line);
-      border-top: 6px solid var(--blue);
+      border-left: 7px solid var(--blue);
       border-radius: 8px;
       background: var(--panel);
       box-shadow: var(--shadow);
@@ -112,21 +207,75 @@
       transition: transform .16s ease, border-color .16s ease, box-shadow .16s ease;
     }
 
-    .card:nth-child(2) { border-top-color: var(--green); }
-    .card:nth-child(3) { border-top-color: var(--gold); }
+    .card:nth-child(2) { border-left-color: var(--green); }
+    .card:nth-child(3) { border-left-color: var(--gold); }
+
+    .card.recommended {
+      border-color: #f2c4a3;
+      border-left-color: var(--green);
+      box-shadow: var(--shadow-strong);
+      position: relative;
+    }
 
     .card:hover,
     .card:focus-visible {
       outline: none;
       transform: translateY(-3px);
-      border-color: #93c5fd;
-      box-shadow: 0 22px 46px rgba(15, 23, 42, .12);
+      border-color: #f4b183;
+      box-shadow: 0 22px 46px rgba(83, 52, 28, .13);
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .card-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    .icon {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--blue-soft);
+      color: var(--blue);
+      flex: 0 0 auto;
+    }
+
+    .icon svg {
+      display: block;
+      width: 25px;
+      height: 25px;
+      stroke: currentColor;
+      stroke-width: 2.25;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .card:nth-child(2) .icon {
+      background: var(--green-soft);
+      color: var(--green);
+    }
+
+    .card:nth-child(3) .icon {
+      background: var(--gold-soft);
+      color: #8a5a00;
     }
 
     .label {
       width: max-content;
       max-width: 100%;
-      margin-bottom: 16px;
       padding: 5px 8px;
       border-radius: 6px;
       background: #edf4fb;
@@ -134,6 +283,20 @@
       font-size: 12px;
       font-weight: 800;
       line-height: 1.4;
+    }
+
+    .recommend {
+      display: inline-flex;
+      align-items: center;
+      min-height: 26px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--green);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 900;
+      line-height: 1.2;
+      white-space: nowrap;
     }
 
     .card:nth-child(2) .label {
@@ -152,6 +315,14 @@
       font-size: 22px;
       line-height: 1.35;
       letter-spacing: 0;
+    }
+
+    .use-case {
+      margin: 0 0 12px;
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.55;
     }
 
     .card p {
@@ -173,6 +344,14 @@
       font-weight: 800;
     }
 
+    .card:nth-child(2) .open {
+      color: var(--green);
+    }
+
+    .card:nth-child(3) .open {
+      color: #8a5a00;
+    }
+
     .open span:last-child {
       display: grid;
       place-items: center;
@@ -184,14 +363,24 @@
       flex: 0 0 auto;
     }
 
+    .card:nth-child(2) .open span:last-child {
+      background: var(--green);
+    }
+
+    .card:nth-child(3) .open span:last-child {
+      background: var(--gold);
+      color: #553400;
+    }
+
     @media (max-width: 900px) {
       .page {
         width: min(100% - 28px, 560px);
-        padding: 28px 0 42px;
+        padding: 22px 0 42px;
       }
 
       .topbar {
-        margin-bottom: 28px;
+        align-items: flex-start;
+        margin-bottom: 24px;
       }
 
       .brand strong {
@@ -200,6 +389,15 @@
 
       .brand span {
         font-size: 12px;
+      }
+
+      .status-pill {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 16px;
       }
 
       h1 {
@@ -215,7 +413,27 @@
       .cards { grid-template-columns: 1fr; }
       .card {
         min-height: 0;
-        padding: 18px;
+        padding: 17px;
+        border-left-width: 6px;
+      }
+
+      .card.recommended {
+        order: -1;
+      }
+
+      .card-top {
+        margin-bottom: 12px;
+      }
+
+      .icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 11px;
+      }
+
+      .icon svg {
+        width: 23px;
+        height: 23px;
       }
 
       .card h2 {
@@ -238,29 +456,58 @@
           <span>制度の概要・対象確認・申請準備</span>
         </div>
       </div>
+      <div class="status-pill" aria-label="入口ページの案内">3つの入口から選択</div>
     </div>
 
     <section class="hero" aria-labelledby="portal-title">
       <div>
-        <h1 id="portal-title">知りたい内容を選んでください</h1>
-        <p class="lead">制度の概要、対象になるかの確認、申請前の準備を目的に合わせて確認できます。</p>
+        <h1 id="portal-title"><span class="title-line">いま必要な手続きへ</span><span class="title-line">進んでください</span></h1>
+        <p class="lead">対象になるか知りたい、制度をざっくり見たい、申請書類を確認したい。目的に合わせて入口を選べます。</p>
+      </div>
+      <div class="quick-start" aria-label="おすすめの進め方">
+        <b>初めての方は「対象確認ナビ」から</b>
+        <p>質問に答えるだけで、該当しそうな制度と次に確認する書類が分かります。</p>
       </div>
     </section>
 
     <section class="cards" aria-label="制度説明ページ一覧">
       <a class="card" href="pages/guide/index.html">
         <div>
-          <div class="label">制度全体</div>
+          <div class="card-top">
+            <div class="card-meta">
+              <div class="label">制度全体</div>
+            </div>
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 0 4 22V5.5Z"></path>
+                <path d="M4 5.5V22"></path>
+                <path d="M8 7h8"></path>
+              </svg>
+            </div>
+          </div>
           <h2>補助金ガイド</h2>
+          <p class="use-case">まず制度の全体像を見たい方へ</p>
           <p>げんかいみらい留学生向けの支援内容、申請スケジュール、各制度の概要をスライド形式で確認できます。</p>
         </div>
         <div class="open"><span>概要を見る</span><span aria-hidden="true">→</span></div>
       </a>
 
-      <a class="card" href="pages/hantei/index.html">
+      <a class="card recommended" href="pages/hantei/index.html">
         <div>
-          <div class="label">対象確認</div>
+          <div class="card-top">
+            <div class="card-meta">
+              <div class="label">対象確認</div>
+              <div class="recommend">迷ったらここ</div>
+            </div>
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M9 12.5 11.3 15 16 9"></path>
+                <circle cx="12" cy="12" r="8.5"></circle>
+              </svg>
+            </div>
+          </div>
           <h2>対象確認ナビ</h2>
+          <p class="use-case">どの補助金が使えそうか確認したい方へ</p>
           <p>質問に答えると、該当しそうな補助制度、概算の補助上限額、申請期限、確認ポイントを表示します。</p>
         </div>
         <div class="open"><span>対象を確認する</span><span aria-hidden="true">→</span></div>
@@ -268,8 +515,21 @@
 
       <a class="card" href="pages/checklist/index.html">
         <div>
-          <div class="label">申請準備</div>
+          <div class="card-top">
+            <div class="card-meta">
+              <div class="label">申請準備</div>
+            </div>
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M8 5h8"></path>
+                <path d="M9 3h6v4H9z"></path>
+                <path d="M7 5H5.5A1.5 1.5 0 0 0 4 6.5v13A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5v-13A1.5 1.5 0 0 0 18.5 5H17"></path>
+                <path d="m8 13 2 2 4-5"></path>
+              </svg>
+            </div>
+          </div>
           <h2>チェックシート</h2>
+          <p class="use-case">申請前に抜け漏れを確認したい方へ</p>
           <p>申請タイミング、対象経費、証拠書類、提出前確認、請求までの確認事項を順番に整理できます。</p>
         </div>
         <div class="open"><span>申請準備を確認する</span><span aria-hidden="true">→</span></div>
