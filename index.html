@@ -24,6 +24,14 @@
       --red: #b42318;
       --shadow: 0 18px 38px rgba(83, 52, 28, .08);
       --shadow-strong: 0 24px 58px rgba(83, 52, 28, .13);
+
+      /* 申請ページ用変数 */
+      --primary-color: #1e3a8a;
+      --bg-color-shinsei: #f8fafc;
+      --card-bg: #ffffff;
+      --border-color: #cbd5e1;
+      --accent-color: #b91c1c;
+
     }
 
     * { box-sizing: border-box; }
@@ -443,6 +451,95 @@
       .open {
         margin-top: 18px;
       }
+    }
+    /* =========================================
+       申請ページ由来のスタイル（セクション区切り以降）
+       ========================================= */
+    .shinsei-section {
+      margin-top: 80px;
+      padding-top: 60px;
+      border-top: 2px dashed var(--line);
+    }
+
+    .shinsei-header {
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 3px solid var(--primary-color);
+      padding-bottom: 20px;
+    }
+
+    .shinsei-header h2 {
+      color: var(--primary-color);
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .notice-box {
+      background-color: #fef2f2;
+      border-left: 4px solid var(--accent-color);
+      padding: 15px;
+      margin-bottom: 30px;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .notice-title { color: var(--accent-color); font-weight: bold; margin-bottom: 5px; }
+
+    .form-grid {
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .form-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 25px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .form-card:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+
+    .form-card-title {
+      font-size: 18px;
+      color: var(--primary-color);
+      font-weight: bold;
+      margin-bottom: 15px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+    }
+
+    .card-description { font-size: 14px; margin-bottom: 20px; flex-grow: 1; }
+    .card-notes { font-size: 12px; color: #64748b; background: #f1f5f9; padding: 10px; border-radius: 4px; margin-bottom: 20px; }
+
+    .btn-link {
+      display: block;
+      text-align: center;
+      background-color: var(--primary-color);
+      color: #ffffff;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 15px;
+      transition: background-color 0.2s;
+    }
+
+    .btn-link:hover { background-color: #1d4ed8; }
+
+    /* レスポンシブ */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr; }
+      .form-grid { flex-direction: column; }
+      .status-pill { display: none; }
     }
   </style>
 </head>
