@@ -536,5 +536,68 @@
       </a>
     </section>
   </main>
+    <!-- 申請セクション [19-28] -->
+    <section class="shinsei-section">
+      <header class="shinsei-header">
+        <h2>各種支援事業 申請手続きポータル</h2>
+        <p>対象となる事業の申請フォームを選択してください。</p>
+      </header>
+
+      <div class="notice-box">
+        <p class="notice-title">【重要なお知らせ】</p>
+        <p>・本画面からの申請だけで補助金の交付が確定・完結するものではありません [25]。</p>
+        <p>・申請受付後、所定の審査を行います。内容確認のため、ご連絡を差し上げることがあります [25]。</p>
+        <p>・申請に対して、不明な点があればお問い合わせください [25]。</p>
+      </div>
+
+      <div class="form-grid" id="application-forms-container">
+        <!-- JSによりここにカードが挿入されます [26] -->
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // 制度データのオブジェクト管理 [26]
+    const applicationData = [
+      {
+        title: "１．学校等見学支援事業",
+        url: "https://logoform.jp/f/bt5Uq",
+        description: "体験入学など町への訪問や学校見学に伴う移動や手続きにかかる費用を支援する事業です。"
+      },
+      {
+        title: "２．帰省支援事業",
+        url: "https://logoform.jp/f/goRVM",
+        description: "下宿等を行っている生徒が帰省に要する交通費等の負担を軽減するための支援事業です。"
+      },
+      {
+        title: "３．生活支援事業",
+        url: "https://logoform.jp/f/Rc1AC",
+        description: "下宿等を行って通学する生徒の家庭の安定した生活をサポートするための支援事業です。"
+      }
+    ];
+
+    // 画面への動的レンダリング [27]
+    function renderForms() {
+      const container = document.getElementById('application-forms-container');
+      applicationData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'form-card';
+        card.innerHTML = `
+          <div>
+            <div class="form-card-title">${item.title}</div>
+            <p class="card-description">${item.description}</p>
+            <div class="card-notes">
+              ※上記の「対象確認ナビ」や「チェックシート」にて確認のうえ、申請ください。
+            </div>
+          </div>
+          <a href="${item.url}" class="btn-link" target="_blank" rel="noopener noreferrer">申請フォームへ進む</a>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // ページ読み込み時に実行 [28]
+    window.addEventListener('DOMContentLoaded', renderForms);
+  </script>
 </body>
 </html>
